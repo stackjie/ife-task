@@ -293,11 +293,11 @@ a { text-decoration: none; }
 
 /*第二张图单独样式*/
 
-.cont-1-select-activity .activity_main .activity_s>p{
+.cont-1-activity .activity_main .activity_s>p{
 	margin-bottom: 8px;
 }
 
-.cont-1-select-activity .activity_main .activity_s>h2{
+.cont-1-activity .activity_main .activity_s>h2{
 	font-size: 21px;
 }
 
