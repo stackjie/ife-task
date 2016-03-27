@@ -1,0 +1,10 @@
+@import url(reset.css);
+@charset "utf-8";
+.button-search {
+  width: 50px;
+  height: 25px;
+  background-color: #388ac1;
+  font-family: "黑体";
+  color: #ebf2f7;
+  border-radius: 2px;
+}
