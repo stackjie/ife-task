@@ -1,6 +1,5 @@
-@import url(reset.css);
 @charset "utf-8";
-.button-search {
+.btn {
   width: 50px;
   height: 25px;
   background-color: #388ac1;

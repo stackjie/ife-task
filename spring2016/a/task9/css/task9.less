@@ -1,0 +1,374 @@
+@charset "utf-8";
+@import "comp.less";
+
+
+html{
+	min-width: 1280px;
+}
+
+.header{
+	height: 56px;
+	background: url(../img/header_logo.png) #2189bf 50px center no-repeat;
+	
+}
+
+.wrap-main{
+	width: 100%;
+	float: left;
+	
+}
+
+
+
+.sidebar{
+	background-color: #2b2e3d;
+	width:260px;
+	height: 1210px;
+	float: left;
+	margin-left: -100%;
+	
+	.user-tab{
+		padding: 15px 0 15px 25px;
+		background-color: #383d4e;
+		font-family: "黑体";
+		cursor: default;		
+		span{
+			padding-left:20px; 
+			background: url(../img/user_tab.png) left no-repeat;
+			color: #ffffff;
+			cursor: pointer;
+		}
+
+		dl{
+			margin-left: 45px;
+			color: #6e8096;
+			
+
+			dt{
+				margin-top: 19px;
+				padding-left:37px; 
+				background: url(../img/file_t.png) left no-repeat,
+							url(../img/files.png) 17px no-repeat;
+				cursor: pointer;
+			}
+
+			dd{
+				margin: 19px 0 0 37px;
+				padding-left:17px;
+				background: url(../img/doc.png) left no-repeat;
+				cursor: pointer;
+			}
+		}
+
+		//被点击选中样式
+		.click_files{
+			color: #ffffff;
+			background: url(../img/click_file_t.png) left no-repeat,
+						url(../img/click_files.png) 17px no-repeat;
+		}
+
+		.click_doc{
+			color: #ffffff;
+			background: url(../img/click_doc.png) left no-repeat;
+		}
+		
+	}
+
+
+	ul li{
+		padding-left:45px;
+		margin-top:37px;
+		color: #6e8096;
+		font-family: "黑体";
+		cursor: pointer;
+		
+	}
+
+	.user-collect{
+		background: url(../img/menu_star.png) 20px no-repeat;
+	}
+
+	.user-share{
+		background: url(../img/menu_fx.png) 20px no-repeat;
+	}
+
+	.user-imgs{
+		background: url(../img/menu_star.png) 20px no-repeat;
+	}
+
+	.user-up{
+		background: url(../img/menu_star.png) 20px no-repeat;
+	}
+
+	.user-info{
+		background: url(../img/menu_info.png) 20px no-repeat;
+	}
+}
+
+//用户信息
+.user-p{
+	padding: 15px 0 0 45px;
+	position: relative;
+
+	img{
+		width: 52px;
+		height: 52px;
+		border-radius: 50%;
+		border:1px solid #b9b9be;
+		padding: 4px;
+		margin-bottom: 18px;
+		display: block;
+	}
+
+	h3{
+		width:55px; 	
+		font-size:16px "黑体";
+		color: #ffffff;
+		position: absolute;
+		top: 41px;
+		right: 86px;
+	}
+
+	p{
+		width:74px;
+		color: #576477;
+		text-align: center;
+		font-family: "宋体";
+		display: inline-block;
+
+		span{
+			font:16px "黑体";
+		}
+
+	}
+}
+
+
+
+.main{
+	background-color: #eeeded;
+	margin-left: 260px;
+	height: 1210px;
+}
+
+.nav{
+	height: 20px;
+	padding:10px 0 0 30px; 
+	background-color: #ffffff;
+	overflow: hidden;
+	ul li{
+		float:left;
+		margin-right:7px; 
+		font-family: "黑体";
+		color:#b7b7b7;
+		
+		//span包含的为当前文档
+		span{
+			color:#6898c2;
+		}
+	}
+}
+
+.cont-all{
+	width: 90%;
+	margin:0 auto;
+}
+
+
+.cont-3{
+	
+	h2{
+		font-size: 12px;
+		margin-bottom: 5px;
+	}
+
+	ul{
+		overflow: hidden;
+	}
+	ul li{
+		float: left;
+		margin-right: 4%;
+	}	
+
+	.c-box-1{
+		.box-total(#43b29e);
+		
+
+	}
+
+	.c-box-2{
+		.box-total(#388ac1);
+	
+		
+	}
+
+	.c-box-3{
+		.box-total(#d04b36);
+		
+	}
+
+	.c-box-4{
+		.box-total(#e2cd47);
+		margin-right: 0;
+		float: right;		
+
+	}
+}
+
+.cont-5{
+
+	margin-top: 50px;
+	.date{
+		float: left;
+		.box-radius(35.5%,356px);
+		
+		table{
+			width: 90%;
+			margin:0 auto;
+
+		}
+
+		table caption{
+			margin:15px 0;
+		}
+		table caption select{
+			.date-s(24%);
+		}
+
+		table caption input[type="button"]{
+			width: 24%;
+			height: 28px;
+			background-color:#ffffff;
+			border:1px solid #cdcecf;
+			float: right;
+
+		}
+
+		thead tr{
+			height: 33px;
+			border-top: 1px solid #a9cfec;
+			border-bottom: 1px solid #e1e1e1;
+			font-family: "黑体";
+
+		}
+		
+		//加重样式(red)
+		.date-s{
+			color: #cd3539;
+		}
+
+		tbody td{
+			
+			height: 40px;
+			text-align: center;
+		}
+		
+		tbody td p{
+			line-height: 18px;
+		}
+
+
+	}
+
+	.rank{
+		float: right;
+		.box-radius(63%,356px);
+
+		table{
+			width: 90%;
+			text-align: center;
+			margin:18px auto;
+		}
+		th,td{
+			height: 24px;
+			border: 1px solid #cbcbcb;
+			
+		}
+
+		tr:hover{
+			background-color:#f4f5f7; 
+		}
+
+		td div{
+			width: 60%;
+			height: 4px;
+			margin-top: 4px;
+			background-color:#dcdcdc;
+			float: right;
+			position:relative;
+			right: 6%; 
+		}
+
+		td div span{
+			height: 4px;
+			display: block;
+		}
+		
+
+		//排行热度样式
+		.rank-c-red{
+			background-color:#ec6d51; 
+		}
+
+		.rank-c-yellow{
+			background-color:#f19e4f; 
+		}
+
+		.rank-c-blue{
+			background-color:#87cef1; 
+		}
+
+		
+		//排行榜热度条id
+		#rank-1{
+			width: 90%;
+			
+		}
+
+		#rank-2{
+			width: 70%;
+			
+		}
+		#rank-3{
+			width: 60%;
+			
+		}
+
+		#rank-4{
+			width: 55%;
+			
+		}
+		#rank-5{
+			width: 50%;
+			
+		}
+		#rank-6{
+			width: 43%;
+			
+		}
+
+		#rank-7{
+			width: 40%;
+			
+		}
+		#rank-8{
+			width: 36%;
+			
+		}
+
+		#rank-9{
+			width: 30%;
+			
+		}
+
+		#rank-10{
+			width: 28%;
+			
+		}
+
+	}
+	
+}
+
+
+
