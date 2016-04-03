@@ -9,7 +9,38 @@ html{
 .header{
 	height: 56px;
 	background: url(../img/header_logo.png) #2189bf 50px center no-repeat;
-	
+	position: relative;
+	input{
+		&[type="text"]{
+			position:absolute;
+			top: 14px;
+			right:156px;
+			width: 213px;
+			height: 28px;
+			border-radius: 15px;
+			padding-left: 36px;
+			background: url(../img/header_seo.png) #fff no-repeat;
+			background-position: 12px center;
+			transition:width 0.5s ease-out;
+			-moz-transition:width 0.5s ease-out;
+			-webkit-transition:width 0.5s ease-out;
+			&:hover{
+				width:313px;
+			}
+		}
+		&[type="button"]{
+			position:absolute;
+			right: 94px;
+			top: 19px;
+			width: 44px;
+			height: 19px;
+			background: url(../img/header_login.png) no-repeat;
+			text-indent:19px;
+			line-height: 16px;
+			font-size: 12px;
+			color: #fff;
+		}
+	}
 }
 
 .wrap-main{
@@ -174,9 +205,161 @@ html{
 	margin:0 auto;
 }
 
+//第一栏内容
+.cont-1{
+	position:relative;
+	margin-top: 19px;
+	height:71px;
+	padding-top: 15px;
+	padding-left: 30px;
+	background-color: #fff;
+	border:1px solid #dddee0;
+	display:flex;
+	input{
+		&:last-child{
+			.btn;
+			position:absolute;
+			top:50%;
+			margin-top: -15px;
+		}
+	}
+}
+//第一栏查询项
+.cont-1-one{
+	width:15%;
+	margin-right: 4%;
+	float:right;
+	font-size: 12px;
+	label{
+		color:#aaa;
+		margin-right: 15px;
+	}
+	select{
+		.select(50%);
+	}
+}
+//第一栏买方和卖方
+.cont-1-two{
+	position:relative;
+	width:19%;
+	float:right;
+	margin-right: 4%;
+	font-size: 12px;
+	label{
+		color: #aaa;
+		margin-right: 15px;
+	}
+	.cont-1-two-buy{
+		margin-bottom: 5px;
+		input{
+			height:50px;
+			margin-top: -25px;
+			background: url(../img/cont-1-two-py.png) no-repeat;
+		}
+	}
+	select{
+		.select(63%);
+	}
+}
+//第一栏日期人数
+.cont-1-three{
+	width:25%;
+	min-width: 400px;
+	margin:0 3% 0 0;
+	label{
+		font-size: 12px;
+		color:#aaa;
+		margin:0 2% 0 0;
+		&:nth-child(5) {
+			position:absolute;
+			right:0px;
+			bottom:7px;
+		}
+	}
+	.cont-1-three-1{
+		position:relative;
+		width:50%;
+		float:left;
+		margin:0 2% 0 0;
+		input{
+			width: 80%;
+			height: 27px;
+			border:1px solid #d0d2d5;
+			background-color:#fff; 
+			margin: 0 0 5px 0;
+			padding: 0 0 0 5px;
+		}
+		select {
+			.select(55%);
+		}
+	}
+	.cont-1-three-2{
+		float:left;
+		width:45%;
+		text-align: center;
+		line-height: 27px;
+		position:relative;
+		select {
+			.select(72%);
+			margin:0 0 6px 0;
+			float:right;
+			&:last-child {
+			.select(99.9%);
+			float:right;
+			}
+		}
+	}
+
+}
+
+//第二栏日期
+.cont-2{
+	height:66px;
+	margin-top: 9px;
+	.cont-2-1{
+		.box-calendar(4%);
+		background: url(../img/cont-2-left.png) #fff no-repeat;
+		background-position: center;
+	}
+	.cont-2-2{
+		.box-calendar(12%);
+	}
+	.cont-2-3{
+		.box-calendar(4%);
+		background: url(../img/cont-2-right.png) #fff no-repeat;
+		background-position: center;
+	}
+	.cont-2-4{
+		float:left;
+		width:12.7%;
+		height:66px;
+		border-top: 2px solid #d7d9dc;
+		border-left: 2px solid #d7d9dc;
+		background-color: #fff;
+		box-sizing: border-box; 
+		-webkit-box-sizing: border-box; 
+   	 	-moz-box-sizing: border-box; 
+		p{
+			text-align: center;
+			line-height: 40px;
+			width:80%;
+			min-width: 150px;
+			height:33px;
+			font-size: 12px;
+			margin: 12px auto;
+			color:#535353;
+			background:url(../img/cont-2-calendar.png) no-repeat;
+			background-position: left center;
+		}
+		&:hover{
+			border-top: 2px solid #4388c9;
+		}
+	}
+}
 
 .cont-3{
 	
+	margin-top: 25px;
 	h2{
 		font-size: 12px;
 		margin-bottom: 5px;
@@ -187,7 +370,7 @@ html{
 	}
 	ul li{
 		float: left;
-		margin-right: 4%;
+		margin-right: 2%;
 	}	
 
 	.c-box-1{
@@ -215,9 +398,134 @@ html{
 	}
 }
 
+
+//第四栏
+.cont-4{
+	margin-top: 14px;
+	overflow: hidden;
+	//第四栏左边部分
+ .project-left{
+	float:left;
+	.box-radius(55%,366px);
+	margin-right: 1%;
+	.project-left-1{
+			width:490px;
+			width:75%;
+			height:279px;
+			overflow:hidden;
+			margin: 13px auto;
+			ul{
+				width:100%;
+				overflow:hidden;
+				margin: 0 auto;
+				margin-left: -6px;
+				li{
+					float:left;
+					width:18%;
+					height: 27px;
+					margin-left: 6px;
+					box-sizing: border-box; 
+					-webkit-box-sizing: border-box; 
+   					 -moz-box-sizing: border-box; 
+					border-top-left-radius:8px;
+					border-top-right-radius:8px;
+					background-color: #ededf0;
+					text-align: center;
+					line-height: 27px;
+					&:first-child{
+						border-bottom-left-radius:0px; 
+					}
+				}
+			}
+		}
+	.project-left-2{
+		border:1px solid #cbcccc;
+		height:249px;
+		border-radius: 8px;
+		border-top-left-radius: 0px;
+			table{
+				width:80%;
+				height:186px;
+				margin: 31.5px auto;
+				border:1px solid #cacbcb;
+
+				border-collapse:collapse;
+				td{
+					border:1px solid #cacbcb;
+					text-align: center;
+				}
+			}
+		}
+	}
+	//第四栏右边部分
+	.project-right{
+		float:left;
+	.box-radius(43.5%,366px);
+		.project-right-1{
+			width:80%;
+			margin:17px auto;
+			position:relative;
+			overflow:hidden;
+			label{
+				display:block;
+				font-size: 12px;
+				color: #c3c2c2;
+				margin-left: 15px;
+				&:nth-child(5){
+					margin-top: 5px;
+				}
+			}	
+			input{
+				&[type="text"]{
+					border-bottom: 1px solid #e7e7e7;
+					height:27px;
+					width:97%;
+					padding-left: 15px;
+				}
+				&[type="button"]{
+					.btn;
+					float:right;
+					margin-top: 5px;
+				}
+				&[type="checkbox"]{
+					margin-top: 5px;
+					margin-right: 5px;
+					margin-left: 10px;
+					float:left;
+				}
+			}
+			span{
+				font-size: 12px;
+				color:#c3c2c2;
+				float:left;
+				margin-top: 5px;
+			}
+			textarea{
+				border-bottom: 1px solid #e7e7e7;
+				padding:15px;
+				width:93.5%;
+				height:128px;
+				overflow:auto;
+			}
+			.project-right-1-1{
+				width:29%;
+				display:inline-block;
+				padding-top: 5px;
+
+			}
+			.project-right-1-2{
+				display:inline-block;
+				padding-top: 5px;
+				width:68%;
+				border-left: 1px solid #e7e7e7;
+			}
+		}
+	}
+}
+
 .cont-5{
 
-	margin-top: 50px;
+	margin-top: 10px;
 	.date{
 		float: left;
 		.box-radius(35.5%,356px);
@@ -225,6 +533,7 @@ html{
 		table{
 			width: 90%;
 			margin:0 auto;
+			table-layout: fixed;
 
 		}
 

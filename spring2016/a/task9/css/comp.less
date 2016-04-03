@@ -47,7 +47,7 @@
 
 //统计box
 .box-total(@color){
-	width: 22%;
+	width: 23.5%;
 	height: 71px;
 	border:1px solid #d8d9db;
 	border-left: 3px solid @color;
@@ -94,3 +94,37 @@
 	background: url(../img/date_s.png) center right 10px no-repeat;
 
 }
+
+//日期box
+.box-calendar(@width){
+	width:@width;
+	float:left;
+	height:66px;
+	border-top: 2px solid #d7d9dc;
+	border-left: 2px solid #d7d9dc;
+	margin-right: 0.9%;
+	background-color: #fff;
+	text-align: center;
+	box-sizing: border-box; 
+	-webkit-box-sizing: border-box; 
+    -moz-box-sizing: border-box; 
+	&:hover{
+		border-top: 2px solid #4388c9;
+	}
+	p{
+			margin-top: 11px;
+			margin-bottom: 13px;
+			font-size: 12px;
+			color:#323333;
+	}
+	span{
+			font-size: 21px;
+			color:#ec6500;
+	}
+	b{
+		font-weight: normal;
+		font-size: 15px;
+		color:#b2b2b2;
+	}
+}
+
