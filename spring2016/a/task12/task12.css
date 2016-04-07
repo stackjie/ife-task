@@ -1,0 +1,64 @@
+@charset "utf-8";
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.wrap {
+  width: 300px;
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+}
+.wrap ul {
+  width: 900px;
+  overflow: hidden;
+  position: absolute;
+  transition: left 0.6s;
+  -moz-transition: left 0.6s;
+  /* Firefox 4 */
+  -webkit-transition: left 0.6s;
+  /* Safari 和 Chrome */
+  -o-transition: left 0.6s;
+  /* Opera */
+}
+.wrap ul li {
+  width: 300px;
+  height: 200px;
+  float: left;
+}
+.wrap ul li:nth-child(1) {
+  background-color: red;
+}
+.wrap ul li:nth-child(2) {
+  background-color: blue;
+}
+.wrap ul li:nth-child(3) {
+  background-color: gray;
+}
+.wrap .nav {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+.wrap .nav a {
+  display: block;
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+  text-align: center;
+  line-height: 30px;
+  float: left;
+  text-decoration: none;
+  color: #000000;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+#img-1:target ~ ul {
+  left: 0;
+}
+#img-2:target ~ ul {
+  left: -100%;
+}
+#img-3:target ~ ul {
+  left: -200%;
+}
