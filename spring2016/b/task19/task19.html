@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			#wrap-box {
+				display: flex;
+				justify-content: center;
+				align-items: flex-end;
+				align-content: center;
+				height: 400px;
+				width: 1250px;
+				border: 1px solid;
+				margin-top: 30px;
+			}
+			
+			.box {
+				display: inline-block;
+				width: 15px;
+				margin-top: 20px;
+				margin-left: 5px;
+				background: #f25d8e;
+			}
+		</style>
+	</head>
+
+	<body>
+		<input type="text" / id="cont">
+		<input type="button" value="左侧入" id="in-left" />
+		<input type="button" value="右侧入" id="in-right" />
+		<input type="button" value="左侧出" id="out-left" />
+		<input type="button" value="右侧出" id="out-right" />
+		<input type="button" value="随机" id="random" />
+		<input type="button" value="冒泡排序" id="maopao" />
+
+		<div id="wrap-box"></div>
+		
+		<script>
+			function eventIO(e) {
+				var e = e || window.event;
+				var node = e.target || e.srcElement;
+				//检查是不是btn
+				if (!node.type === "button") return;
+
+				var id = node.id;
+				var wrap = document.getElementById("wrap-box");
+				var cont = document.getElementById("cont");
+
+				//添加检测
+				if(id === "in-left" || id === "in-right"){
+
+					
+					if (!cont.value) {  //检测侧入时文本框的内容是否为空，如果为空不执行
+						alert("error");
+						return;
+
+
+					}else if(cont.value < 10 || cont.value > 100){  //检测输入时数值的大小
+						alert("请输入10-100以内的数字");
+						return;
+					}else if(wrap.childNodes.length == 60){    //检测是否超过上限
+						alert("已超过上限，不能大于60个");
+						return;
+					}
+					
+					
+				}
+
+				//侧出检测
+				if(id === "out-left" || id === "out-right"){
+					if (wrap.childNodes.length == 0) {
+						alert("没有内容无法侧出！");
+						return;
+					}
+				}
+
+
+			
+				
+				var new_box = document.createElement("div");
+				new_box.style.height = cont.value * 3.5 + "px";
+				new_box.className = "box";
+				if (id === "in-left") {
+					wrap.insertBefore(new_box, wrap.firstChild);
+				} else if (id === "in-right") {
+					wrap.appendChild(new_box);
+				} else if (id === "out-left") {
+					wrap.removeChild(wrap.firstChild);
+				} else if (id === "out-right") {
+					wrap.removeChild(wrap.lastChild);
+				}
+			}
+
+			function randomBox() {
+				var wrap = document.getElementById("wrap-box");
+				wrap.innerHTML ="";
+				for (var i = 0; i <= 50; i++) {
+					//产生随机数
+					var value = Math.floor(Math.random() * (100 - 10) + 10);
+					var new_box = document.createElement("div");
+					new_box.style.height = value * 3.5 + "px";
+					new_box.className = "box";
+					wrap.appendChild(new_box);
+				}
+			}
+
+			function maopao() {
+				var boxs = document.getElementsByClassName("box");
+				var wrap = document.getElementById("wrap-box");
+
+				//禁止添加、随机、冒泡事件避免重复
+				document.body.onclick = null;
+				document.getElementById("random").onclick = null; 
+				document.getElementById("maopao").onclick =null;
+				var i=0;
+				var j =0;	
+				var s = setInterval(
+					function(){
+						if(i < boxs.length){
+
+							
+							if(j < boxs.length - i - 1){
+								var box1 = boxs[j],
+								box2 = boxs[j + 1];
+								//将高度转换成int去掉px单位
+								var num1 = parseInt(box1.style.height),
+									num2 = parseInt(box2.style.height);
+								if (num1 > num2) {
+									
+									box1.style.height = num2 + 'px';
+									box2.style.height = num1 + 'px';
+								}
+								j++;
+							}else{
+								j=0;
+								i++;
+							}
+							
+							
+						}else{
+							clearInterval(s);
+
+							//重新绑定事件
+							document.body.onclick = eventIO;
+							document.getElementById("random").onclick = randomBox;  
+							document.getElementById("maopao").onclick = maopao;
+							return;
+						}
+
+					}
+				,15);
+						
+					
+				
+			}
+			document.body.onclick = eventIO;
+			document.getElementById("random").onclick = randomBox;
+			document.getElementById("maopao").onclick = maopao;
+		</script>
+	</body>
+
+</html>

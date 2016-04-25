@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			.box{
+				display: inline-block;
+				width: 50px;
+				height: 30px;
+				margin-top: 20px;
+				margin-left: 10px;
+				padding-top: 20px;
+				text-align: center;
+				background: red;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<input type="text" / id="cont">
+		<input type="button" value="左侧入" id="in-left"/>
+		<input type="button" value="右侧入" id="in-right"/>
+		<input type="button" value="左侧出" id="out-left"/>
+		<input type="button" value="右侧出" id="out-right"/>
+		
+		<div id="wrap-box">
+		
+		</div>
+		<script>
+			function eventIO(e){
+				
+				var e = e || window.event;
+				var node = e.target || e.srcElement;
+				var id = node.id;
+				
+				//检测侧入时文本框的内容是否为空，如果为空不执行
+				var cont = document.getElementById("cont");
+				if(!cont.value && (id==="in-left" || id==="in-right")){
+					alert("erro");
+					return;
+				} 
+				
+				var wrap = document.getElementById("wrap-box");
+				
+				var new_box = document.createElement("div");
+					new_box.innerHTML = cont.value;
+					new_box.className = "box";
+					
+				if(id === "in-left"){
+					wrap.insertBefore(new_box,wrap.firstChild);
+				}else if(id === "in-right"){
+					wrap.appendChild(new_box);
+				}else if(id === "out-left"){
+					alert(wrap.firstChild.innerHTML);
+					wrap.removeChild(wrap.firstChild);
+				}else if(id === "out-right"){
+					alert(wrap.lastChild.innerHTML);
+					wrap.removeChild(wrap.lastChild);
+				}
+			}
+			
+			document.body.onclick = eventIO;
+		</script>
+	</body>
+</html>
