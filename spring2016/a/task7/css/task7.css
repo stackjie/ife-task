@@ -713,7 +713,7 @@ a { text-decoration: none; }
 	font-weight: normal;
 }
 .cont-foot-main p{
-	font-family: "宋体";
+	font-family: "微软雅黑";
 	margin-top: 10px;
 	font-size: 12px;
 }
@@ -757,7 +757,7 @@ a { text-decoration: none; }
 	height: 58px;
 	min-width: 1280px;
 	background-color: #2f2f38;
-	font-family: "宋体";
+	font-family: "微软雅黑";
 	font-size: 12px;
 	overflow: hidden;	
 }

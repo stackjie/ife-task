@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>task22</title>
+	<style type="text/css">
+		* { margin: 0; padding: 0;}
+		body {background-color: #fff;}
+		div {
+			border: 1px solid #000;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+			background-color: #fff;
+		}
+		.four {
+			width: 50px;
+			height: 30px;
+			margin: 5px;
+		}
+		.three {
+			width: 120px;
+			height: 60px;
+			margin: 8px;	
+		}
+		.two {
+			width: 270px;
+			height: 100px;
+			margin: 10px;
+		}
+		.one {
+			width: 600px;
+			height: 200px;
+			margin: 20px;	
+		}
+		
+		button {
+			width: 80px;
+			height: 30px;
+		}
+		#btn {
+			float: left;
+			position: relative;
+			left: 20px;
+			border: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="one" id="root">
+		<div class="two">
+			<div class="three">
+				<div class="four"></div>
+				<div class="four"></div>
+			</div>
+			<div class="three">
+				<div class="four"></div>
+				<div class="four"></div>
+			</div>
+		</div>
+		<div class="two">
+			<div class="three">
+				<div class="four"></div>
+				<div class="four"></div>
+			</div>
+			<div class="three">
+				<div class="four"></div>
+				<div class="four"></div>
+			</div>
+		</div>
+	</div>
+	<div id="btn">
+		<button id="pre">先序</button>
+		<button id="inorder">中序</button>
+		<button id="post">后序</button>
+	</div>
+	<script type="text/javascript">
+
+		var treeNodes = [];
+		var timeId;
+
+
+		/**
+		 * [pre description]先序遍历
+		 * @param  {object} node
+		 */
+		function pre(node){
+			
+			if (node != undefined) {
+				treeNodes.push(node);
+				pre(node.firstElementChild);
+				pre(node.lastElementChild);
+			}
+		}
+
+		/**
+		 * [pre description]中序遍历
+		 * @param  {object} node
+		 */
+		function inorder(node){
+
+			if (node != undefined) {
+				inorder(node.firstElementChild);
+				treeNodes.push(node);
+				inorder(node.lastElementChild);
+			}
+		}
+
+		/**
+		 * [pre description]后序遍历
+		 * @param  {object} node
+		 */
+		function post(node){
+			if (node != undefined) {
+				inorder(node.firstElementChild);
+				inorder(node.lastElementChild);
+				treeNodes.push(node);
+			}
+		}
+
+		/**
+		 * [animate description]遍历动画效果
+		 * @param  {int} s 动画间隔的时间
+		 */
+		function animate(s){
+
+			var i = 0;
+			var beforeNode;  //前一个元素
+			timeId = setInterval(function(){
+
+				
+				if(beforeNode != undefined) beforeNode.style.background = '#fff';
+				
+				
+				if (i < treeNodes.length) {
+					treeNodes[i].style.background = 'blue';
+					beforeNode = treeNodes[i];
+					i++;
+				}else{
+					clearInterval(timeId);
+					treeNodes = [];  //清空遍历序列
+				}
+				
+				
+			},s);
+		}
+
+		function run(type){
+			
+			//init
+			for (var i = 0; i < treeNodes.length; i++) {
+				treeNodes[i].style.background = '#fff';
+			}
+			treeNodes = [];  //清空遍历序列
+			clearInterval(timeId);
+
+			
+			var root = document.getElementById('root');
+				
+			if(type === 'pre'){
+				pre(root);
+			}else if(type === 'inorder'){
+				inorder(root);
+			}else if(type === 'post'){
+				post(root);
+			}
+
+			animate(500);
+
+
+		}
+
+		/**
+		 * 事件委托
+		 */
+		document.body.onclick = function(ev){
+			var ev = ev || window.event;
+			var target = ev.target || ev.srcElement;
+			run(target.id);
+		}
+
+
+	</script>	
+</body>
+</html>
