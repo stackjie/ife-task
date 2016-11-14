@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/modal.css">
+</head>
+<body>
+	<input type="button" value="show" id="btn_show">
+    <div class="modal" id="modal_demo">
+		<div class="modal-dialog">
+			<div class="modal-header">
+				<h3>浮出层</h3>
+				<button type="button" class="modal-btn-close">x</button>
+			</div>
+		</div>
+	</div>
+    <script src="js/modal.js"></script>
+	<script>
+		var modal = new Modal(document.getElementById('modal_demo'));
+		document.getElementById('btn_show').onclick = function(){
+			modal.show();
+		}
+		modal.startDrag();
+	</script>
+</body>
+</html>

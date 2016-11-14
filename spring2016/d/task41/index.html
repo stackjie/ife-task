@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/dateSelect.css">
+    <script src="js/jquery.min.js"></script>
+    <style>
+        #box{
+            margin: 50px auto;
+            width:800px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <input type="text" id="date_test">
+        <input type="text">
+        <button>按钮</button>
+        <div>
+            <input type="password">
+            <button>按钮</button>
+        </div>
+    </div>
+    <script src="js/dateSelect.js"></script>
+    <script>
+        var ds = new DateSelect($('#date_test'),{
+            yearDLV:1970,
+            yearULV:2020,
+            disabledDateReg:/^((2016\u5e74)|(11\u6708)|(10)|(20)|(12))$/,  //筛选不可选日期的正则
+            checkedDateFunc:function(){
+                console.log('111');
+            }
+        });
+
+    </script>
+</body>
+</html>

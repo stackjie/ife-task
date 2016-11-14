@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title Page</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container form-horizontal" style="margin: 30px auto;width: 50%;">
+      
+        <div class="form-group">
+            <div class="col-sm-10 pull-right" id="is_school_radio_group">
+                 <label class="radio-inline">
+                    <input type="radio" name="is-school" id="at_school" checked>在校生
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="is-school" id="not_school">非在校生
+                </label>
+            </div>
+        </div>
+        <div class="form-group" id="school_wrap">
+             <label class="col-sm-2 control-label">学校</label>
+            <div class="col-sm-5">
+                <select class="form-control" id="city">
+                </select>
+            </div>
+           <div class="col-sm-5">
+                <select class="form-control col-sm-5" id="school">
+                </select>
+           </div>
+        </div>
+        <div class="form-group hidden" id="work_wrap">
+             <label class="col-sm-2 control-label">就业单位</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control">
+            </div>
+        </div>
+        
+       
+    </div>
+    <script src="js/main.js"></script>
+</body>
+</html>
