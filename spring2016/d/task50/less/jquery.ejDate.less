@@ -1,0 +1,183 @@
+/*!
+ * ejDate 1.0.0 alpha
+ * https://github.com/stackjie/ejDate.js
+ * @license MIT licensed
+ *
+ * A project by StackJIE
+ */
+
+ .ejdate-wrap {
+     display: inline-block;
+     position: relative;
+ }
+
+ .ejdate-main {
+     width: 280px;
+     padding: 5px;
+     margin-top: 6px; 
+     border: 1px solid #d5d5d5;
+     border-radius: 5px;
+     box-shadow: 3px 3px 8px #d5d5d5;
+     position: absolute;
+ }
+
+ /* 指向表单的箭头样式 */
+ .ejdate-main:after, .ejdate-main:before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-bottom: 8px solid #fff;
+    position: absolute;
+    top: -18px;
+    left: 8px;
+}
+
+.ejdate-main:before {
+    border-bottom: 8px solid #c4c4c4;
+    margin-top: -1px; 
+}
+
+ .ejdate-main table {
+     text-align: center;
+     table-layout: fixed;
+     overflow: hidden;
+ }
+
+ .ejdate-main table caption {
+     margin: 10px 0 10px 0;
+     overflow: hidden;
+ }
+
+ .ejdate-main .btn-cut{
+     display: block;
+     width: 28px;
+     height: 28px;
+     border: 1px solid #c4c4c4;
+     border-radius: 50%;
+     position: relative;
+     cursor: pointer;
+     transition: box-shadow .2s;
+ }
+
+ /* 切换按钮hover样式 */
+.ejdate-main .btn-cut:hover {
+    box-shadow: 3px 3px 8px #d5d5d5;
+}
+
+ /* 日期向前按钮样式 */
+ .ejdate-main .before-date {
+     float: left;
+     margin-left: 10px; 
+ }
+
+    /* 左箭头 */
+ .ejdate-main .before-date:after, .ejdate-main .before-date:before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    margin: -10px 0 0 -15px;
+    border: 10px solid transparent;
+    border-right: 10px solid #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.ejdate-main .before-date:before {
+    border-right: 10px solid #c4c4c4;
+    margin-left: -16px; 
+}
+
+ /* 日期向后按钮样式 */
+.ejdate-main .after-date {
+     float: right;
+     margin-right: 10px; 
+ }
+
+    /* 右箭头 */
+.ejdate-main .after-date:after, .ejdate-main .after-date:before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    margin: -10px 0 0 -5px;
+    border: 10px solid transparent;
+    border-left: 10px solid #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.ejdate-main .after-date:before {
+    border-left: 10px solid #c4c4c4;
+    margin-left: -4px; 
+}
+
+ .ejdate-main select {
+     display: inline-block;
+     width: 70px;
+     height: 30px;
+     border: 1px solid #c4c4c4;
+     border-radius: 5px;
+     font-size: 16px;
+     vertical-align:middle;
+     outline: none;
+     cursor: pointer;
+ }
+
+ .ejdate-main .select-year {
+     margin-right: 5px; 
+ }
+
+  .ejdate-main table {
+      width: 100%;
+ }
+
+  .ejdate-main thead th {
+    display: inline-block;
+    height: 35px;
+    width: 35px;
+    line-height: 35px;
+    font-size: 12px;
+    font-weight: normal;
+    cursor: pointer;
+ }
+
+ .ejdate-main tbody td {
+    display: inline-block;
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    line-height: 35px;
+    font-size: 14px;
+    cursor: pointer;
+ }
+
+
+/* 天数的几种样式区分 */
+
+/* 表示这个月的天数正常样式 */
+.ejdate-main .day-normal {
+    color: #808080;
+    transition: background .4s;
+}
+
+.ejdate-main .day-normal:hover {
+    background: #e74f4d;
+    color: #fff;
+}
+
+/* 区分上月以及下月日期的样式 */
+.ejdate-main .day-dimmed {
+    color: #ccc;
+}
+
+/* 被选中 */
+.ejdate-main .active {
+    border-radius: 50%;
+    background: #e74f4d;
+    color: #fff;
+}
