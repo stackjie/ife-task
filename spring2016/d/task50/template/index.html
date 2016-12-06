@@ -3,8 +3,38 @@
 <head>
     <meta charset="utf-8">
     <title>问卷调查</title>
+    <link rel="stylesheet" href="../dist/css/index.min.css">
 </head>
 <body>
-    
+    <div class="header">
+        <h1>问卷调查</h1>
+        <a href="list.html">我的问卷</a>
+    </div>
+    <div class="main-wrap">
+        <a href="new.html" class="btn-new-q">新建问卷</a>
+        <table class="question-tab">
+            <thead>
+                <tr><th>标题</th><th>时间</th><th>状态</th><th>操作</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>这是一份问卷</td>
+                    <td>2016-04-12 20:46:52</td>
+                    <td>发布中</td>
+                    <td><input class="btn btn-red-h" type="button" value="编辑">
+                    <input class="btn btn-red-h" type="button" value="删除">
+                    <input class="btn btn-red-h" type="button" value="查看数据"></td>
+                </tr>
+                <tr>
+                    <td>这是一份问卷</td>
+                    <td>2016-04-12 20:46:52</td>
+                    <td>发布中</td>
+                    <td><input class="btn btn-red-h" type="button" value="编辑">
+                    <input class="btn btn-red-h" type="button" value="删除">
+                    <input class="btn btn-red-h" type="button" value="查看数据"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>

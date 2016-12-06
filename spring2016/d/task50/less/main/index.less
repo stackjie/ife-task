@@ -1,0 +1,47 @@
+@import "../base.less";
+@import "../header.less";
+
+.question-tab {
+   
+    width: 95%;
+    margin: 0 auto;
+    font-size: 16px;
+    border-collapse:collapse;
+    thead {
+        th {
+            font-weight: normal;
+             padding: 1em 0;
+        }
+    }
+    tbody {
+        text-align: center;
+        tr {
+            border-bottom: 1px solid #bbb;
+            cursor: pointer;
+            &:hover {
+                background: #eee;
+            } 
+        }
+        td {
+            padding: 1em 0;
+        }
+    }
+}
+
+.btn-new-q {
+    .btn();
+    width: 80px;
+    height: 40px;
+    border: 0;
+    background: #e74f4d;
+    color: #fff;
+    line-height: 40px;
+    position: absolute;
+    right: 0;
+    top: -50px;
+    &:hover {
+        background: #fff;
+        color: #4d4d4d;
+    }
+}
+    

@@ -1,0 +1,139 @@
+@import "normalize.less";
+
+/* 基础表单样式 */
+
+// 按钮
+.btn {
+    display: inline-block;
+    min-width: 5em;
+    height: 2.5em;
+    border: 1px solid #888;
+    border-radius: 5px;
+    background: #fff;
+    font-size: 14px;
+    color: #888; 
+    text-align: center;
+    vertical-align: middle;
+    transition: background .3s;
+    text-decoration: none;
+    cursor: pointer;
+    outline: 0;
+}
+
+// 按钮hover样式
+.btn-red-h:hover {
+    border: 1px solid #fff;
+    background: #e74f4d;
+    color: #fff;
+}
+
+// 文本框
+input[type="text"] {
+    display: inline-block;
+    height: 20px;
+    margin-left: 5px; 
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+// 多行文本框
+textarea {
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-size: 14px;
+    line-height: 1.42857143;
+
+}
+
+// 单选框和多选框
+input[type="radio"],
+input[type="checkbox"] {
+    margin: 0 5px;
+    margin-top: -.2em;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+/* 工具样式 */
+.center-block {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.pull-right {
+    float: right !important;
+}
+
+.pull-left {
+    float: left !important;
+}
+
+.text-right {
+    text-align: right !important;
+}
+
+.text-left {
+    text-align: left !important;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.hide {
+    display: none !important;
+}
+
+.show {
+    display: block !important;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.text-hide {
+    font: 0/0 a;
+    color: transparent;
+    text-shadow: none;
+    background-color: transparent;
+    border: 0;
+}
+
+// 清楚浮动Mixin
+.clearfix() {
+    &:before,
+    &:after {
+        content: " ";
+        display: table;
+    }
+
+    &:after {
+        clear: both;
+    }
+}
+
+// body背景
+body {
+    background: #ddd;
+}
+
+// 布局样式
+.main-wrap {
+    width: 70%;
+    min-height: 300px;
+    margin: 80px auto;
+    border-radius: 5px;
+    background: #fff;
+    position: relative;
+}
+
+
+

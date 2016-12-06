@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>编辑问卷</title>
+    <link rel="stylesheet" href="../dist/css/edit.min.css">
+    <script src="../dist/js/sea.js"></script>
+</head>
+<body>
+     <div class="header">
+        <h1>问卷调查</h1>
+        <a href="new.html">我的问卷</a>
+    </div>
+    <div class="main-wrap">
+        <h2>这里是标题</h2>
+        <div class="question-wrap">
+            <div class="question-add-wrap">
+                <div class="btn-wrap">
+                    <input id="add_radio" class="btn add-radio" type="button" value="单选">
+                    <input id="add_checkbox" class="btn add-checkbox" type="button" value="多选">
+                    <input id="add_text" class="btn add-text" type="button" value="文本题">
+                </div>
+                <input class="btn-add-question" type="button" value="添加问题">
+            </div>
+        </div>
+        <div class="main-foot">
+            <div class="pull-left">
+                <label>问卷截至日期</label>
+                <input type="text" id="text_date_closed">
+            </div>
+            <div class="pull-right">
+                <input class="btn btn-red-h" type="button" value="保存问卷">
+                <input class="btn btn-red-h" type="button" value="发布问卷">
+            </div>
+        </div>
+    </div>
+    <script>
+        seajs.config({
+            base: "../js",
+            alias: {
+                "jquery": "jquery.js",
+                "ejDate": "ejDate.js",
+                "main": "edit-main.js",
+                "question": "question.js"
+            }
+
+        })
+        
+        seajs.use("main");
+    </script>
+</body>
+</html>

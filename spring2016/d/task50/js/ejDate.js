@@ -6,9 +6,9 @@
  * A project by StackJIE
  */
 
-(function ($) {
+define(function (require, exports, module) {
     'use strict';
-
+    var $ = require('jquery');
     $.fn.ejDate = function (cfg) {
 
         // 保存this
@@ -374,4 +374,4 @@
         return this;
     }
 
-})(jQuery);
+});
