@@ -8,17 +8,9 @@ define(function(require, exports, module) {
 
     // 加载依赖模块
     var $ = require('jquery');
+    var util = require('util');
 
-    // 继承方法封装
-    function extend(child, parent) {
-        var F = function(){};
 
-        F.prototype = parent.prototype;
-
-        child.prototype = new F();
-
-        child.prototype.constructor = child;
-　　}
 
     /**
      * 问题组件父类
@@ -28,6 +20,7 @@ define(function(require, exports, module) {
     function Question() {
 
     }
+
 
     Question.prototype.init = function () {
         var html = ''
@@ -68,6 +61,10 @@ define(function(require, exports, module) {
 
     };
 
+    Question.initQuestionData = function (questionId) {
+        
+    }
+
      /**
      * 问题组件单选类
      * 
@@ -80,12 +77,13 @@ define(function(require, exports, module) {
         ? data 
         : {
             type: 'radio',
+            title: '单选题',
             options: ['选项1','选项2']
         };
  
     }
 
-    extend(QuestionRadio, Question);
+    util.extend(QuestionRadio, Question);
 
     QuestionRadio.prototype.addOption = function () {
         data.options.push('选项' + data.options.length + 1);
@@ -107,7 +105,7 @@ define(function(require, exports, module) {
 
     }
 
-    extend(QuestionCheckBox, QuestionRadio);
+    util.extend(QuestionCheckBox, QuestionRadio);
 
     /**
      * 问题组件单选类
@@ -119,6 +117,6 @@ define(function(require, exports, module) {
 
     }
 
-    extend(QuestionText, Question);
+    util.extend(QuestionText, Question);
 
 });
