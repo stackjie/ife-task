@@ -19,8 +19,7 @@ define(function(require, exports, module) {
         this.type = type;
         this.data = data;
         this.$container = $container; 
-        this.listData = listData.data;
-        //index = this.listData.indexOf(this.data);
+        this.listData = listData;
 
         this.initData();
         this.initBaseHTML();
@@ -69,16 +68,16 @@ define(function(require, exports, module) {
         +   '<div class="question-tool">'
         +       '<span class="tool up">上移</span>'
         +       '<span class="tool down">下移</span>'
-        +       '<span class="tool copy">复用</span>'
+        +       '<span class="tool clone">复用</span>'
         +       '<span class="tool del">删除</span>'       
         +   '</div>'
         + '</li>';
 
-        this._$wrap = $(html);
-        this._$options = this._$wrap.find('.question-options');
-        this._$tool = this._$wrap.find('.question-tool');
+        this.$wrap = $(html);
+        this._$options = this.$wrap.find('.question-options');
+        this._$tool = this.$wrap.find('.question-tool');
 
-        this.$container.append(this._$wrap);
+        this.$container.append(this.$wrap);
 
     };
 
@@ -91,8 +90,8 @@ define(function(require, exports, module) {
             } else if ($(this).hasClass('down')) {
                 that.tools('down');
 
-            } else if ($(this).hasClass('copy')) {
-                that.tools('copy');
+            } else if ($(this).hasClass('clone')) {
+                that.tools('clone');
 
             } else if ($(this).hasClass('del')) {
                 that.tools('del');
@@ -116,12 +115,8 @@ define(function(require, exports, module) {
                
                 this.listData[index] = temp;
 
-                // reindex
-                // this.listData[index - 1].index = index;
-                // index -= 1;
-
                 // 更改dom结构
-                this._$wrap.insertBefore(this._$wrap.prev());
+                this.$wrap.insertBefore(this.$wrap.prev());
             }
 
         } else if (toolName === 'down') {
@@ -132,12 +127,8 @@ define(function(require, exports, module) {
 
                 this.listData[index] = temp;
 
-                // reindex
-                // this.listData[index + 1].index = index;
-                // index += 1; 
-
                 // 更改dom结构
-                this._$wrap.insertAfter(this._$wrap.next());
+                this.$wrap.insertAfter(this.$wrap.next());
 
             }
 
@@ -151,13 +142,15 @@ define(function(require, exports, module) {
                 this.listData[index + 1] = this.listData;
             }
 
+            var cloneComp = Question.create(this.$container, this.listData, this.type, this.data);
+            cloneComp.$wrap.insertAfter(this.$wrap);
+
         } else if (toolName === 'del') {
             this.listData.splice(index, 1);
 
             // 更改dom结构
-            this._$wrap.detach();
+            this.$wrap.detach();
         }
-        console.log(this.listData);
        
     }
 

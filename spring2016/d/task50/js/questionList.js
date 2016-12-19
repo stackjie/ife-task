@@ -17,7 +17,7 @@ define(function(require, exports, module) {
     function QuestionList() {
         this._questionListId = util.getQuestionListId(); 
         this._allData = util.getQuestionListAllData();
-        this._listData = util.getQuestionListData(this._allData, this._questionListId);
+        this._listData = util.getQuestionListData(this._allData, this._questionListId).data;
         this._$listElem = $('#question_list');
         this._questions = [];
         this.init();
