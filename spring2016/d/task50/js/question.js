@@ -122,7 +122,7 @@ define(function(require, exports, module) {
         } else if (toolName === 'down') {
             if (index !== this.listData.length - 1) {
                 var temp = this.listData[index + 1];
-
+                console.log(index);
                 this.listData[index + 1] = this.listData[index];
 
                 this.listData[index] = temp;
@@ -133,16 +133,19 @@ define(function(require, exports, module) {
             }
 
         } else if (toolName === 'clone') {
-            var nextIndex = index + 1;
+            // 深拷贝对象
+            var cloneDataObj = {};
+            $.extend(true, cloneDataObj, this.listData[index]);
+
             if (index !== this.listData.length - 1) {
-                var sliceArr = this.listData.slice(nextIndex);
-                this.listData.splice(nextIndex, this.listData);
-                this.listData.concat(sliceArr);
+                this.listData.splice(index + 1, 0, cloneDataObj);
+                
             } else {
-                this.listData[index + 1] = this.listData;
+                this.listData[index + 1] = cloneDataObj;
+                
             }
 
-            var cloneComp = Question.create(this.$container, this.listData, this.type, this.data);
+            var cloneComp = Question.create(this.$container, this.listData, this.type, cloneDataObj);
             cloneComp.$wrap.insertAfter(this.$wrap);
 
         } else if (toolName === 'del') {
@@ -151,7 +154,7 @@ define(function(require, exports, module) {
             // 更改dom结构
             this.$wrap.detach();
         }
-       
+        console.log(this.listData);
     }
 
     /**
