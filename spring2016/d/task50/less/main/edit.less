@@ -28,6 +28,7 @@
     margin: 0 auto;
     .clearfix();
     position: relative;
+    list-style: none;
     cursor: pointer;
      &:hover {
         background: #eee;
@@ -37,16 +38,16 @@
     }
 
     
-    .question-item {
+    .question-option {
         text-indent: 1.6em;
 
-        &:hover .btn-del-item {
+        &:hover .btn-del-option {
             display: inline-block;
         }
     }
 
     // 删除单选框和多选框项hover按钮
-    .btn-del-item {
+    .btn-del-option {
         display: none;
         margin-top: -.2em; 
         margin-left: 1em; 
@@ -63,7 +64,7 @@
     }
 
     // 添加选项的空标签样式
-    .question-add-item {
+    .question-options-add {
         height: 30px;
         margin-bottom: 2em; 
         border: 1px dashed #eee;

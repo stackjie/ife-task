@@ -10,45 +10,155 @@ define(function(require, exports, module) {
     var $ = require('jquery');
     var util = require('util');
 
-
-
     /**
      * 问题组件父类
      * 
      * @class
      */
-    function Question() {
+    function Question($container, listData, type, data) {
+        this.type = type;
+        this.data = data;
+        this.$container = $container; 
+        this.listData = listData.data;
+        //index = this.listData.indexOf(this.data);
+
+        this.initData();
+        this.initBaseHTML();
+        this.bindToolsEvents();
+    }
+
+    Question.prototype.initData = function () {
+        // 如果data属性为空新建组件的数据而不是引用
+        if (!this.data) {
+            // 生成title字符串
+            var title;
+            switch (this.type) {
+                case 'radio':
+                    title = '单选题';
+                    break;
+                case 'checkbox':
+                    titel = '多选题';
+                    break;
+                case 'text':
+                    title = '文本题';
+                    break;
+            }
+
+            var that = this;
+            this.data = {
+                type: that.type,
+                title: title,
+                options: that.type === 'text' ? 'null' : ['选项1','选项2']
+            };
+
+            // 添加进问题数据数组
+            this.listData.push(this.data);
+
+        }
 
     }
 
+    Question.prototype.initBaseHTML = function () {
+        // 获取数据在列表数组中的索引
+        var index = this.listData.indexOf(this.data);
 
-    Question.prototype.init = function () {
         var html = ''
         + '<li>'
+        +   '<h4>Q' + (index + 1) + ' ' + this.data.title + '</h4>'
+        +   '<div class="question-options"></div>'
         +   '<div class="question-tool">'
-        +       '<span class="up">上移</span>'
-        +       '<span class="down">下移</span>'
-        +       '<span class="copy">复用</span>'
-        +       '<span class="del">删除</span>'       
+        +       '<span class="tool up">上移</span>'
+        +       '<span class="tool down">下移</span>'
+        +       '<span class="tool copy">复用</span>'
+        +       '<span class="tool del">删除</span>'       
         +   '</div>'
         + '</li>';
 
-        $('question_list').append(html);
-        
+        this._$wrap = $(html);
+        this._$options = this._$wrap.find('.question-options');
+        this._$tool = this._$wrap.find('.question-tool');
+
+        this.$container.append(this._$wrap);
+
+    };
+
+    Question.prototype.bindToolsEvents = function () {
+        var that = this;
+        this._$tool.on('click', '.tool', function () {
+            if ($(this).hasClass('up')) {
+                that.tools('up');
+
+            } else if ($(this).hasClass('down')) {
+                that.tools('down');
+
+            } else if ($(this).hasClass('copy')) {
+                that.tools('copy');
+
+            } else if ($(this).hasClass('del')) {
+                that.tools('del');
+
+            }
+
+        })
+           
     }
 
-    Question.prototype.tool = function (toolName) {
-        switch (toolName) {
-            case 'up':
+  
 
-                break;
-            case 'down':
-                break;
-            case 'clone':
-                break;
-            case 'del':
-                break;
+    Question.prototype.tools = function (toolName) {
+        // 获取数据在列表数组中的索引
+        var index = this.listData.indexOf(this.data);
+        if (toolName === 'up') {
+            if (index > 0) {
+                var temp = this.listData[index - 1];
+
+                this.listData[index - 1] = this.listData[index];
+               
+                this.listData[index] = temp;
+
+                // reindex
+                // this.listData[index - 1].index = index;
+                // index -= 1;
+
+                // 更改dom结构
+                this._$wrap.insertBefore(this._$wrap.prev());
+            }
+
+        } else if (toolName === 'down') {
+            if (index !== this.listData.length - 1) {
+                var temp = this.listData[index + 1];
+
+                this.listData[index + 1] = this.listData[index];
+
+                this.listData[index] = temp;
+
+                // reindex
+                // this.listData[index + 1].index = index;
+                // index += 1; 
+
+                // 更改dom结构
+                this._$wrap.insertAfter(this._$wrap.next());
+
+            }
+
+        } else if (toolName === 'clone') {
+            var nextIndex = index + 1;
+            if (index !== this.listData.length - 1) {
+                var sliceArr = this.listData.slice(nextIndex);
+                this.listData.splice(nextIndex, this.listData);
+                this.listData.concat(sliceArr);
+            } else {
+                this.listData[index + 1] = this.listData;
+            }
+
+        } else if (toolName === 'del') {
+            this.listData.splice(index, 1);
+
+            // 更改dom结构
+            this._$wrap.detach();
         }
+        console.log(this.listData);
+       
     }
 
     /**
@@ -57,13 +167,42 @@ define(function(require, exports, module) {
      * @param {string} type 需要生成的问题组件类型
      * @param {object=} data 现有的数据
      */
-    Question.factory = function (type, data) {
+    Question.create = function ($container, listData, type, data) {
+        var questionComp;
+        switch (type) {
+            case 'radio':
+                questionComp = new QuestionRadio($container, listData, data);
+                break;
+            case 'checkbox':
+                questionComp = new QuestionCheckBox($container, listData, data);
+                break;
+            case 'text':
+                questionComp = new QuestionText($container, listData, data);
+                break;
+        }
 
+        return questionComp;
     };
+    
+    // [
+    //    {
+    //        id: '1',
+    //        data: [
+    //            {
+    //                 type: 'radio',
+    //                 title: '单选题',
+    //                 options: ['选项1','选项2']
+    //            }
+    //            ,
+    //             {
+    //                 type: 'radio',
+    //                 title: '单选题',
+    //                 options: ['选项1','选项2']
+    //            }
+    //        ]
+    //    }
+    // ]
 
-    Question.initQuestionData = function (questionId) {
-        
-    }
 
      /**
      * 问题组件单选类
@@ -71,29 +210,71 @@ define(function(require, exports, module) {
      * @class
      * @extends Question
      */
-    function QuestionRadio(data) {
-        // 如果没传入数据对象将会生成一个新的数据对象
-        this.data = data
-        ? data 
-        : {
-            type: 'radio',
-            title: '单选题',
-            options: ['选项1','选项2']
-        };
- 
+    function QuestionRadio($container, listData, data) {
+        Question.call(this, $container, listData, 'radio', data);
+        
+        this.renderOptions();
+        this.bindEvents();
     }
 
     util.extend(QuestionRadio, Question);
 
     QuestionRadio.prototype.addOption = function () {
-        data.options.push('选项' + data.options.length + 1);
+        // 获取数据在列表数组中的索引
+        var index = this.listData.indexOf(this.data);
 
+        this.data.options.push( '选项' + ( this.data.options.length + 1) );
+
+        // 更新数据
+        this.listData[index] = this.data;
+
+        this.renderOptions();
     };
 
-    QuestionRadio.prototype.delOption = function (optionName) {
-        var delIndex = data.options.indexOf(optionName);
-        data.options.splice(delIndex, 1);
+    QuestionRadio.prototype.delOption = function (optionIndex) {
+        // 获取数据在列表数组中的索引
+        var index = this.listData.indexOf(this.data);
+
+        this.data.options.splice(optionIndex, 1);
+
+        // 更新数据
+        this.listData[index] = this.data;
+
+        this.renderOptions();
     };
+
+    QuestionRadio.prototype.renderOptions = function () {
+        // 清空元素
+        this._$options.html('');
+        
+        var options = this.data.options;
+        var html = '';
+        for (var i = 0; i < options.length; i++) {
+            html += ''
+            + '<p class="question-option">'
+            +   '<input type="' + this.data.type + '">' + options[i]
+            +   '<span class="btn-del-option"></span>'
+            + '</p>'
+        }
+
+        this._$options.html(html);
+    }
+
+    QuestionRadio.prototype.bindEvents = function () {
+        var that = this;
+
+        this._$options.on('click', '.btn-del-option', function() {
+            var optionIndex =  that._$options.find('.btn-del-option').index($(this));
+            that.delOption(optionIndex);
+
+            that.renderOptions();
+
+        });
+
+        $('<div class="question-options-add">').click(function () {
+            that.addOption();
+        }).insertAfter(that._$options);
+    }
 
     /**
      * 问题组件多选类
@@ -101,8 +282,10 @@ define(function(require, exports, module) {
      * @class
      * @extends QuestionRadio
      */
-    function QuestionCheckBox(data) {
-
+    function QuestionCheckBox($container, listData, data) {
+        Question.call(this, $container, listData, data);
+        this.type = 'checkbox';
+     
     }
 
     util.extend(QuestionCheckBox, QuestionRadio);
@@ -113,10 +296,12 @@ define(function(require, exports, module) {
      * @class
      * @extends Question
      */
-    function QuestionText(data) {
+    // function QuestionText(data) {
 
-    }
+    // }
 
-    util.extend(QuestionText, Question);
+    // util.extend(QuestionText, Question);
+
+    exports.create = Question.create;
 
 });
